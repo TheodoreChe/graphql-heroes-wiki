@@ -1,0 +1,29 @@
+schema {
+    query: RootQueryType
+    mutation: MutationType
+}
+
+type RootQueryType {
+    hero(id: ID): HeroType
+    heroes: [HeroType]
+    town(id: ID): TownType
+    towns: [TownType]
+}
+
+type MutationType {
+    addHero(movementPoints: Int!, name: String!, townId: String!): HeroType
+    addTown(name: String!): TownType
+}
+
+type HeroType {
+    id: ID
+    movementPoints: Int
+    name: String
+    town: TownType
+}
+
+type TownType {
+    heroes: [HeroType]
+    id: ID
+    name: String
+}

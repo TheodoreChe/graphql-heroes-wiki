@@ -8,6 +8,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
+  GraphQLNonNull,
 } = graphql;
 
 /**
@@ -90,7 +91,7 @@ const MutationType = new GraphQLObjectType({
     addTown: {
       type: TownType,
       args: {
-        name: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         let town = new Town({
@@ -102,9 +103,9 @@ const MutationType = new GraphQLObjectType({
     addHero: {
       type: HeroType,
       args: {
-        name: { type: GraphQLString },
-        movementPoints: { type: GraphQLInt },
-        townId: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        movementPoints: { type: new GraphQLNonNull(GraphQLInt) },
+        townId: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         let hero = new Hero({
