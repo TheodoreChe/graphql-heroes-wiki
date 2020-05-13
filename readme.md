@@ -1,3 +1,4 @@
 ## GraphQL Example
 ### Running it:
-- Start a local server `npm run start:server`
+- Start a local server `yarn run start:server`
+

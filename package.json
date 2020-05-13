@@ -1,31 +1,18 @@
 {
   "name": "graphql-playground",
-  "version": "1.0.0",
-  "description": "GraphQL",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "workspaces": ["server", "client"],
   "scripts": {
-    "start:server": "nodemon api"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TheodoreChe/graphql-playground.git"
+    "start:api": "yarn workspace server start:api"
   },
   "keywords": [
     "gql"
   ],
-  "author": "TheodoreChe",
-  "bugs": {
-    "url": "https://github.com/TheodoreChe/graphql-playground/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheodoreChe/graphql-playground.git"
   },
-  "homepage": "https://github.com/TheodoreChe/graphql-playground#readme",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-graphql": "^0.9.0",
-    "graphql": "^15.0.0",
-    "mongoose": "^5.9.13",
-    "nodemon": "^2.0.3"
-  },
-  "devDependencies": {
-    "prettier": "^2.0.5"
-  }
+  "author": "TheodoreChe"
 }
