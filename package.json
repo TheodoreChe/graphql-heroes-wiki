@@ -5,7 +5,8 @@
   "private": true,
   "workspaces": ["server", "client"],
   "scripts": {
-    "start:api": "yarn workspace server start:api"
+    "start:api": "yarn workspace server start:api",
+    "start:yoga": "yarn workspace server start:yoga"
   },
   "keywords": [
     "gql"

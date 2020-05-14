@@ -22,7 +22,7 @@ const TownType = new GraphQLObjectType({
     heroes: {
       type: new GraphQLList(HeroType),
       resolve(parent) {
-        return Town.find({ townId: parent.id });
+        return Hero.find({ townId: parent.id });
       },
     },
   }),
