@@ -26,4 +26,5 @@ type Town {
     heroes: [Hero]
     id: ID
     name: String
+    type: String
 }

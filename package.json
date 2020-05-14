@@ -6,7 +6,8 @@
   "workspaces": ["server", "client"],
   "scripts": {
     "start:api": "yarn workspace server start:api",
-    "start:yoga": "yarn workspace server start:yoga"
+    "start:yoga": "yarn workspace server start:yoga",
+    "start:client": "yarn workspace client start"
   },
   "keywords": [
     "gql"
