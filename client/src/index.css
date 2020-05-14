@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
-  font-size: 21px;
+  font-size: 16px;
   line-height: 32px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,4 +37,8 @@ p {
 
 ul {
   list-style-type: square;
+}
+
+form {
+  font-family: sans-serif;
 }

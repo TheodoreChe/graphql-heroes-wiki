@@ -1,18 +1,6 @@
 import React, { Suspense } from 'react';
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-
-const getHeroListQuery = gql`
-    {
-        heroes {
-            id
-            name
-            town{
-                name
-            }
-        }
-    }
-`;
+import { getHeroListQuery } from '../queries';
 
 const HeroListComponent = () => {
   const { data } = useQuery(getHeroListQuery, { suspend: true });
@@ -23,8 +11,10 @@ const HeroListComponent = () => {
 
   return (
     <ul>
-      {data.heroes.map(hero => (
-        <li key={hero.id}>{hero.name} <i>— {hero.town.name}</i></li>
+      {data.heroes.map((hero) => (
+        <li key={hero.id}>
+          {hero.name} <i>— {hero.town.name}</i> ({hero.movementPoints})
+        </li>
       ))}
     </ul>
   );
