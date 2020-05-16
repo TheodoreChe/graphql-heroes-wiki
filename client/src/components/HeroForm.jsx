@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Header } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { toast } from 'react-toastify';
 import { getTownListQuery, addHeroQuery, getHeroListQuery } from '../queries';
 
 export const HeroForm = () => {
@@ -14,34 +15,32 @@ export const HeroForm = () => {
   if (data == null) {
     return null;
   }
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    addHero({
-      variables: {
-        movementPoints: Number(movementPoints),
-        name,
-        townId,
-      },
-      refetchQueries: [
-        {
-          query: getHeroListQuery,
+    try {
+      await addHero({
+        variables: {
+          movementPoints: Number(movementPoints),
+          name,
+          townId,
         },
-      ],
-    });
-    setName('');
-    setPoints('');
-    setTownId('');
+        refetchQueries: [
+          {
+            query: getHeroListQuery,
+          },
+        ],
+      });
+      setName('');
+      setPoints('');
+      setTownId('');
+    } catch (e) {
+      toast.error('Save error');
+    }
   };
 
   return (
     <Form onSubmit={submitHandler}>
-      <Header as='h2' content="Add Hero"/>
-      <Form.Input
-        label="Name"
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <Form.Input label="Name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
       <Form.Input
         label="Points"
         type="number"
@@ -59,7 +58,9 @@ export const HeroForm = () => {
         }))}
         onChange={(e, { value }) => setTownId(value)}
       />
-      <Form.Button color="green">Save Hero</Form.Button>
+      <Form.Button color="green" fluid>
+        Add Hero
+      </Form.Button>
     </Form>
   );
 };
