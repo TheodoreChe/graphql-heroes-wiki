@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { List } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { useQuery } from '@apollo/react-hooks';
 import { getHeroListQuery } from '../queries';
 
@@ -11,13 +11,10 @@ const HeroListComponent = () => {
   }
 
   return (
-    <List
-      bulleted
-      items={data.heroes.map((hero) => ({
-        as: 'a',
-        header: hero.name,
-        description: hero.town.name,
-      }))}
+    <Table
+      headerRow={['Name', 'Town']}
+      tableData={data.heroes.map((hero) => [hero.name, hero.town.name])}
+      renderBodyRow={(i) => i}
     />
   );
 };

@@ -58,9 +58,7 @@ export const HeroForm = () => {
         }))}
         onChange={(e, { value }) => setTownId(value)}
       />
-      <Form.Button color="green" fluid>
-        Add Hero
-      </Form.Button>
+      <Form.Button color="green" fluid content="Add Hero" icon="save" />
     </Form>
   );
 };

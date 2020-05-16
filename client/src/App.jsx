@@ -11,14 +11,14 @@ function App() {
       <Grid columns={3}>
         <Grid.Row>
           <Grid.Column>
-            <HeroList />
-          </Grid.Column>
-          <Grid.Column></Grid.Column>
-          <Grid.Column>
             <Segment>
               <HeroForm />
             </Segment>
           </Grid.Column>
+          <Grid.Column>
+            <HeroList />
+          </Grid.Column>
+          <Grid.Column></Grid.Column>
         </Grid.Row>
       </Grid>
     </main>
