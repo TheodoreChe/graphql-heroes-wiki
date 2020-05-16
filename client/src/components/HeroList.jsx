@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Header, List } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
 import { useQuery } from '@apollo/react-hooks';
 import { getHeroListQuery } from '../queries';
 
@@ -14,6 +14,7 @@ const HeroListComponent = () => {
     <List
       bulleted
       items={data.heroes.map((hero) => ({
+        as: 'a',
         header: hero.name,
         description: hero.town.name,
       }))}
@@ -23,7 +24,6 @@ const HeroListComponent = () => {
 
 export const HeroList = () => (
   <Suspense fallback={<div>Loading...</div>}>
-    <Header as='h2' content="Heroes List"/>
     <HeroListComponent />
   </Suspense>
 );
