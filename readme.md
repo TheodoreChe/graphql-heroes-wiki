@@ -3,6 +3,7 @@ Example of GraphQl API
 
 ### Dependences:
 - React
+- React-hook-form
 - Apollo
 - MongoDB
 
