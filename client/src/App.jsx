@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import { HeroList } from './components/HeroList';
 import { HeroForm } from './components/HeroForm';
 
