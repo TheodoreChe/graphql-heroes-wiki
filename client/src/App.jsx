@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
 import { HeroList } from './components/HeroList';
 import { HeroForm } from './components/HeroForm';
+import { HeroInfo } from './components/HeroInfo';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
           <Grid.Column>
             <HeroList />
           </Grid.Column>
-          <Grid.Column></Grid.Column>
+          <Grid.Column>
+            <HeroInfo />
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </main>

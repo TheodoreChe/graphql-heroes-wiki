@@ -3,17 +3,15 @@ import { Form } from 'semantic-ui-react';
 import { useForm, Controller } from 'react-hook-form';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
-import { getTownListQuery, addHeroQuery, getHeroListQuery } from '../queries';
+import { GET_TOWN_LIST_QUERY, ADD_HERO_QUERY, GET_HERO_LIST_QUERY } from '../queries';
 
 export const HeroForm = () => {
   const { register, handleSubmit, errors, control } = useForm();
 
-  const { data } = useQuery(getTownListQuery);
-  const [addHero] = useMutation(addHeroQuery);
+  const { data } = useQuery(GET_TOWN_LIST_QUERY);
+  const [addHero] = useMutation(ADD_HERO_QUERY);
 
-  if (data == null) {
-    return null;
-  }
+  if (data == null) return null;
 
   const onSubmit = async ({ movementPoints, name, townId }, e) => {
     try {
@@ -25,7 +23,7 @@ export const HeroForm = () => {
         },
         refetchQueries: [
           {
-            query: getHeroListQuery,
+            query: GET_HERO_LIST_QUERY,
           },
         ],
       });
