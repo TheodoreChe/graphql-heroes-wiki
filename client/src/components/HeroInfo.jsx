@@ -7,7 +7,6 @@ const HeroInfoComponent = React.memo(({ id }) => {
   const { data, loading } = useQuery(GET_HERO_QUERY, { variables: { id } });
 
   if (data == null || loading) return null;
-  console.log(data);
 
   return <Card header={data.hero.name} meta={data.hero.town.name} />;
 });
