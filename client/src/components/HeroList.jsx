@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Table, Label, Placeholder } from 'semantic-ui-react';
+import { Table, Label, Pagination } from 'semantic-ui-react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_HERO_LIST_QUERY } from '../queries';
 import { PlaceholderList } from './PlaceHolders';
@@ -25,6 +25,22 @@ const HeroListComponent = () => {
           </Table.Row>
         ))}
       </Table.Body>
+      <Table.Footer>
+        <Table.Row>
+          <Table.HeaderCell colSpan='2'>
+            <Pagination
+              boundaryRange={0}
+              defaultActivePage={1}
+              firstItem={null}
+              lastItem={null}
+              siblingRange={1}
+              totalPages={6}
+              prevItem={null}
+              nextItem={null}
+            />
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Footer>
     </Table>
   );
 };

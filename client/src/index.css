@@ -44,4 +44,6 @@ form {
   border: 1px solid rgba(34,36,38,.15);
 }
 
-
+.ui.pagination.menu .item:focus{
+  outline: none;
+}

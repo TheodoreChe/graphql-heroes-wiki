@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table, Label, Placeholder, Form } from 'semantic-ui-react';
-import { Controller } from 'react-hook-form';
 
 export const PlaceholderList = () => (
   <Table>
