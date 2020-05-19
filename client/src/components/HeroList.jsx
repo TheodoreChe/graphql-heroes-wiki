@@ -1,12 +1,13 @@
 import React, { Suspense } from 'react';
-import { Table, Label } from 'semantic-ui-react';
+import { Table, Label, Placeholder } from 'semantic-ui-react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_HERO_LIST_QUERY } from '../queries';
+import { PlaceholderList } from './PlaceHolders';
 
 const HeroListComponent = () => {
   const { data, client } = useQuery(GET_HERO_LIST_QUERY, { suspend: true });
 
-  if (data == null) return null;
+  if (data == null) return <PlaceholderList />;
 
   return (
     <Table>

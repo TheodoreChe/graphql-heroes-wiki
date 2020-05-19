@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import { GET_TOWN_LIST_QUERY, ADD_HERO_QUERY, GET_HERO_LIST_QUERY } from '../queries';
+import { PlaceholderForm } from './PlaceHolders';
 
 export const HeroForm = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -11,7 +12,7 @@ export const HeroForm = () => {
   const { data } = useQuery(GET_TOWN_LIST_QUERY);
   const [addHero] = useMutation(ADD_HERO_QUERY);
 
-  if (data == null) return null;
+  if (data == null) return <PlaceholderForm />;
 
   const onSubmit = async ({ movementPoints, name, townId }, e) => {
     try {
