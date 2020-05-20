@@ -1,6 +1,7 @@
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
 
 type Query {
@@ -13,6 +14,14 @@ type Query {
 type Mutation {
     addHero(movementPoints: Int!, name: String!, townId: String!): Hero
     addTown(name: String!): Town
+}
+
+type Subscription {
+    messageSent: Message
+}
+
+type Message {
+    content: String!
 }
 
 type Hero {

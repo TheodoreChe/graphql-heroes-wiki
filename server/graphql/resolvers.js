@@ -1,3 +1,7 @@
+const PUB_SUB = {
+  MESSAGE: 'PUB_SUB_MESSAGE',
+};
+
 module.exports = {
   Query: {
     town: async (parent, args, { models }) => await models.Town.findById(args.id),
@@ -14,13 +18,23 @@ module.exports = {
         throw new Error('Cannot Save Town');
       }
     },
-    addHero: async (parent, {name, movementPoints, townId}, { models }) => {
+    addHero: async (parent, { name, movementPoints, townId }, { models, pubsub }) => {
       try {
+        pubsub.publish(PUB_SUB.MESSAGE, {
+          messageSent: {
+            content: 'Hero Saving...'
+          },
+        });
         let hero = new models.Hero({ name, movementPoints, townId });
         return await hero.save();
       } catch (e) {
         throw new Error('Cannot Save Hero');
       }
+    },
+  },
+  Subscription: {
+    messageSent: {
+      subscribe: (parent, args, { pubsub }) => pubsub.asyncIterator(PUB_SUB.MESSAGE),
     },
   },
   Town: {

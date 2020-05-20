@@ -7,6 +7,7 @@
   "scripts": {
     "start:api": "yarn workspace server start:api",
     "start:yoga": "yarn workspace server start:yoga",
+    "start:pubsub": "yarn workspace server start:pubsub",
     "start:client": "yarn workspace client start"
   },
   "keywords": [
