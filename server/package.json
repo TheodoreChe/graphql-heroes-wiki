@@ -4,9 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start:basic": "nodemon src/basic-app",
-    "start:yoga": "nodemon src/yoga-app",
-    "start:pubsub": "nodemon src/pubsub-app",
+    "start:basic": "nodemon src/basic",
+    "start:pubsub": "nodemon src/pubsub",
     "build-ts": "tsc"
   },
   "keywords": [
