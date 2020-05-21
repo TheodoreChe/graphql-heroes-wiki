@@ -2,7 +2,7 @@ const PUB_SUB = {
   MESSAGE: 'PUB_SUB_MESSAGE',
 };
 
-module.exports = {
+export default {
   Query: {
     town: async (parent, args, { models }) => await models.Town.findById(args.id),
     towns: async (parent, args, { models }) => await models.Town.find({}),

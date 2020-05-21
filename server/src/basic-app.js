@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const env = require('./env');
 const schema = require('./graphql/schema.js');
 
-const app = express();
+const basicApp = express();
 
 mongoose.connect(env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -15,7 +15,7 @@ mongoose.connection.once('open', () => {
   console.log(`Server is running on http://localhost:${env.API_PORT}`);
 });
 
-app.use(
+basicApp.use(
   '/graphql',
   expressHTTP({
     schema,
@@ -23,6 +23,6 @@ app.use(
   }),
 );
 
-app.listen(env.API_PORT, () => {
+basicApp.listen(env.API_PORT, () => {
   console.log(`Server listening at http://localhost:${env.API_PORT}`);
 });
