@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start:basic": "nodemon src/basic",
-    "start:pubsub": "nodemon src/pubsub",
+    "start": "nodemon dist/app",
     "build-ts": "tsc"
   },
   "keywords": [
@@ -21,7 +20,8 @@
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.18.3",
     "mongoose": "^5.9.13",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "type-graphql": "^1.0.0-rc.2"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",

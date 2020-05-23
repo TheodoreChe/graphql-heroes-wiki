@@ -15,5 +15,5 @@ Example of GraphQl API
 - [Mongoose](https://github.com/Automattic/mongoose)
 
 ### Running it:
-- Start a local server `yarn run start:server`
-- Start a dev-server server `yarn run start:server`
+- Start api server `yarn run start:server`
+- Start client dev server `yarn run start:server`

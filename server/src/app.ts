@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import mongoose from 'mongoose';
 import env from './env';
 import models from './models';
-import resolvers from './graphql/resolvers';
+import resolvers from './graphql-basic/resolvers';
 
 async function bootstrap() {
   const db = mongoose.connect(env.MONGODB_URI, {
