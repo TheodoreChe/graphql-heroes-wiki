@@ -7,4 +7,4 @@ const heroSchema = new Schema({
   townId: String,
 });
 
-module.exports = mongoose.model('Hero', heroSchema);
+export default mongoose.model('Hero', heroSchema);

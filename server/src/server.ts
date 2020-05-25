@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import * as Mongoose from 'mongoose';
 import { HeroResolver, TownResolver } from './graphql';
+import models from './models';
 import { env } from './config';
 
 async function bootstrap() {
@@ -16,11 +17,11 @@ async function bootstrap() {
     useUnifiedTopology: true,
   });
 
-  const pubsubApp = new PubSub();
+  const pubsub = new PubSub();
 
   const server = new GraphQLServer({
     schema,
-    context: { models, db, pubsub: pubsubApp },
+    context: { models, db, pubsub },
   });
 
   const FRONTEND_HOST = 'localhost';

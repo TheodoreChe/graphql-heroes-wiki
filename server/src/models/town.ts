@@ -5,4 +5,4 @@ const townSchema = new Schema({
   name: String,
 });
 
-module.exports = mongoose.model('Town', townSchema);
+export default  mongoose.model('Town', townSchema);
