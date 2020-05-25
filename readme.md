@@ -10,10 +10,10 @@ Example of GraphQl API
 - [Apollo Client](https://github.com/apollographql/apollo-client)
 
 ### Server Dependences:
-- Express
-- Graphql Yoga
+- [Graphql Yoga](https://github.com/prisma-labs/graphql-yoga)
+- [TypeGraphQL](https://github.com/MichalLytek/type-graphql)
 - [Mongoose](https://github.com/Automattic/mongoose)
 
 ### Running it:
-- Start api server `yarn run start:server`
-- Start client dev server `yarn run start:server`
+- Start API server `yarn run start:api`
+- Start client dev server `yarn run start:client`
