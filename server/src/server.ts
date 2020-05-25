@@ -1,12 +1,17 @@
 import { GraphQLServer, PubSub } from 'graphql-yoga';
 import 'reflect-metadata';
-import mongoose from 'mongoose';
-import env from './env';
-import models from './models';
-import resolvers from './graphql-basic/resolvers';
+import { buildSchema } from 'type-graphql';
+import * as Mongoose from 'mongoose';
+import { HeroResolver, TownResolver } from './graphql';
+import { env } from './config';
 
 async function bootstrap() {
-  const db = mongoose.connect(env.MONGODB_URI, {
+  const schema = await buildSchema({
+    resolvers: [HeroResolver, TownResolver],
+    emitSchemaFile: true,
+  });
+
+  const db = Mongoose.connect(env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -14,8 +19,7 @@ async function bootstrap() {
   const pubsubApp = new PubSub();
 
   const server = new GraphQLServer({
-    typeDefs: `${__dirname}/graphql/schema.graphql`,
-    resolvers,
+    schema,
     context: { models, db, pubsub: pubsubApp },
   });
 
@@ -29,14 +33,15 @@ async function bootstrap() {
     port: env.API_PORT,
     subscriptions: {
       onConnect: () => {
-        console.log(`Server is running on ws://localhost:${env.API_PORT}`);
+        console.log('GraphQL-server listening subscriptions');
       },
     },
   };
 
-  mongoose.connection.once('open', function () {
+  Mongoose.connection.once('open', function () {
+    console.log('Mongodb is connected successfully');
     server.start(options, () => {
-      console.log(`Server is running on http://localhost:${env.API_PORT}`);
+      console.log(`GraphQL-server listening on port ${env.API_PORT}.`);
     });
   });
 }

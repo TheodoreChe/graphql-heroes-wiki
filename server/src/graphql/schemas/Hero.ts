@@ -1,8 +1,8 @@
 import { Field, ObjectType, Int, ID } from 'type-graphql';
 import { Town } from './Town';
 
-@ObjectType()
-export class Hero {
+@ObjectType({ description: "Hero Schema" })
+export class HeroSchema {
   @Field((type) => ID)
   id: string;
 

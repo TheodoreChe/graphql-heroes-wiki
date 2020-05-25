@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon dist/app",
-    "build-ts": "tsc"
+    "dev": "ts-node-dev --respawn src/server.ts",
+    "build": "tsc"
   },
   "keywords": [
     "gql"
@@ -33,6 +34,7 @@
     "prettier": "^2.0.5",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.10.1",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.9.3"
   }
 }

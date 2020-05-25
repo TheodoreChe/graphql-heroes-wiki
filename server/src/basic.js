@@ -12,7 +12,7 @@ mongoose.connect(env.MONGODB_URI, {
 });
 
 mongoose.connection.once('open', () => {
-  console.log(`Server is running on http://localhost:${env.API_PORT}`);
+  console.log('Mongoose is running');
 });
 
 basic.use(
@@ -24,5 +24,5 @@ basic.use(
 );
 
 basic.listen(env.API_PORT, () => {
-  console.log(`Server listening at http://localhost:${env.API_PORT}`);
+  console.log(`GraphQL-server listening on port ${env.API_PORT}.`);
 });
