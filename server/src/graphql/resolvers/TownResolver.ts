@@ -1,14 +1,21 @@
 import { Arg, Ctx, Query, Resolver } from 'type-graphql';
-import { Town } from '../schemas/Town';
+import { TownSchema } from '../schemas/TownSchema';
 
-@Resolver(Town)
-export default class {
-  @Query((returns) => Town)
+@Resolver()
+export class TownResolver {
+  @Query((returns) => TownSchema)
   async town(@Arg('id') id: string, @Ctx() { models }: { models: any }) {
     const town = await models.Town.findById(id);
-    if (town === undefined) {
-      throw new Error();
+    if (town != null) {
+      return town;
     }
-    return town;
+  }
+
+  @Query((returns) => [TownSchema])
+  async towns(@Ctx() { models }: { models: any }) {
+    const towns = await models.Town.find({});
+    if (towns != null) {
+      return towns;
+    }
   }
 }

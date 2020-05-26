@@ -1,7 +1,4 @@
 import { HeroResolver } from './resolvers/HeroResolver';
-import TownResolver from './resolvers/TownResolver';
+import { TownResolver } from './resolvers/TownResolver';
 
-export {
-  HeroResolver,
-  TownResolver,
-};
+export { HeroResolver, TownResolver };

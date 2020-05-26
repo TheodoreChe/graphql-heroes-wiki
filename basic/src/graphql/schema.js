@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { Town, Hero } = require('../models');
+const { Town, Hero } = require('../db');
 
 const {
   GraphQLID,

@@ -1,7 +1,7 @@
 import { Field, ObjectType, Int, ID } from 'type-graphql';
-import { Town } from './Town';
+import { TownSchema } from './TownSchema';
 
-@ObjectType({ description: "Hero Schema" })
+@ObjectType({ description: "The Hero is Type" })
 export class HeroSchema {
   @Field((type) => ID)
   id: string;
@@ -12,6 +12,6 @@ export class HeroSchema {
   @Field((type) => Int)
   movementPoints: number;
 
-  @Field((type) => Town)
-  town: Town;
+  @Field((type) => TownSchema)
+  town: TownSchema;
 }
