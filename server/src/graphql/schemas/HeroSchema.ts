@@ -12,6 +12,9 @@ export class HeroSchema {
   @Field((type) => Int)
   movementPoints: number;
 
+  @Field((type) => ID)
+  townId: string;
+
   @Field((type) => TownSchema)
   town: TownSchema;
 }

@@ -1,11 +1,20 @@
-import { Arg, Ctx, Query, Resolver, InputType, Field, Mutation, Int } from 'type-graphql';
+import {
+  Arg,
+  Ctx,
+  InputType,
+  Field,
+  FieldResolver,
+  Mutation,
+  Resolver,
+  Root,
+  Query,
+  Int,
+} from 'type-graphql';
 import { HeroSchema } from '../schemas/HeroSchema';
+import { TownSchema } from '../schemas/TownSchema';
+import { IContext } from '../context.interface';
 
-interface IContext {
-  models: any;
-}
-
-@InputType({ description: 'New recipe data' })
+@InputType({ description: 'New Hero' })
 class AddHeroInput {
   @Field()
   name: string;
@@ -17,7 +26,7 @@ class AddHeroInput {
   townId: string;
 }
 
-@Resolver()
+@Resolver((returns) => HeroSchema)
 export class HeroResolver {
   @Query((returns) => HeroSchema)
   async hero(@Arg('id') id: string, @Ctx() { models }: IContext) {
@@ -44,7 +53,19 @@ export class HeroResolver {
       const hero = new models.Hero(newHeroData);
       return await hero.save();
     } catch (err) {
-      throw new Error(err);
+      throw err;
+    }
+  }
+
+  @FieldResolver()
+  async town(
+    @Root() { _doc: { townId} }: { _doc: HeroSchema },
+    @Ctx() { models }: IContext,
+  ): Promise<TownSchema> {
+    try {
+      return await models.Town.findById(townId);
+    } catch (err) {
+      throw err;
     }
   }
 }
