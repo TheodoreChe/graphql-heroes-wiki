@@ -13,6 +13,7 @@ async function bootstrap() {
       resolvers: [HeroResolver, TownResolver],
     });
 
+    // Connect to DataBase
     const db = mongoose.connect(env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

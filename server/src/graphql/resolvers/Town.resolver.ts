@@ -1,14 +1,9 @@
-import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from 'type-graphql';
-import { TownSchema } from '../schemas/TownSchema';
-import { IContext } from '../context.interface';
+import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from 'type-graphql';
+import { TownSchema, ITown } from '../schemas/Town.schema';
+import { AddTownInput } from '../inputs/TownInput';
+import { IContext } from '../types/Context.interface';
 
-@InputType({ description: 'New Town' })
-class AddTownInput {
-  @Field()
-  name: string;
-}
-
-@Resolver()
+@Resolver((returns) => TownSchema)
 export class TownResolver {
   @Query((returns) => TownSchema)
   async town(@Arg('id') id: string, @Ctx() { models }: { models: any }) {
@@ -19,7 +14,7 @@ export class TownResolver {
   }
 
   @Query((returns) => [TownSchema])
-  async towns(@Ctx() { models }: { models: any }) {
+  async towns(@Ctx() { models }: IContext) {
     const towns = await models.Town.find({});
     if (towns != null) {
       return towns;
@@ -36,6 +31,19 @@ export class TownResolver {
       return await town.save();
     } catch (err) {
       throw new Error(err);
+    }
+  }
+
+  @FieldResolver()
+  async heroes(
+    @Root() root: ITown,
+    @Ctx() { models }: IContext,
+  ): Promise<TownSchema> {
+    try {
+      console.log(root);
+      return await models.Hero.find({ townId: root.id });
+    } catch (err) {
+      throw err;
     }
   }
 }

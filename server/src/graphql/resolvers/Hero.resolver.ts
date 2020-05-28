@@ -1,30 +1,22 @@
+import { PubSubEngine } from 'graphql-subscriptions';
 import {
   Arg,
   Ctx,
-  InputType,
-  Field,
   FieldResolver,
   Mutation,
+  PubSub,
   Resolver,
   Root,
+  Subscription,
   Query,
-  Int,
 } from 'type-graphql';
-import { HeroSchema } from '../schemas/HeroSchema';
-import { TownSchema } from '../schemas/TownSchema';
-import { IContext } from '../context.interface';
+import { HeroSchema, IHero } from '../schemas/Hero.schema';
+import { NotificationSchema, INotification } from '../schemas/Notification.schema';
+import { TownSchema } from '../schemas/Town.schema';
+import { AddHeroInput } from '../inputs/HeroInput';
+import { IContext } from '../types/Context.interface';
 
-@InputType({ description: 'New Hero' })
-class AddHeroInput {
-  @Field()
-  name: string;
-
-  @Field((type) => Int)
-  movementPoints: number;
-
-  @Field()
-  townId: string;
-}
+const NOTIFICATION = 'NOTIFICATION';
 
 @Resolver((returns) => HeroSchema)
 export class HeroResolver {
@@ -37,7 +29,7 @@ export class HeroResolver {
   }
 
   @Query((returns) => [HeroSchema])
-  async heroes(@Ctx() { models }: { models: any }) {
+  async heroes(@Ctx() { models }: IContext) {
     const heroes = await models.Hero.find({});
     if (heroes != null) {
       return heroes;
@@ -46,11 +38,13 @@ export class HeroResolver {
 
   @Mutation((returns) => HeroSchema)
   async addHero(
+    @PubSub() pubSub: PubSubEngine,
     @Arg('data') newHeroData: AddHeroInput,
     @Ctx() { models }: IContext,
   ): Promise<HeroSchema> {
     try {
       const hero = new models.Hero(newHeroData);
+      await pubSub.publish(NOTIFICATION, { message: newHeroData.name });
       return await hero.save();
     } catch (err) {
       throw err;
@@ -58,14 +52,16 @@ export class HeroResolver {
   }
 
   @FieldResolver()
-  async town(
-    @Root() { _doc: { townId} }: { _doc: HeroSchema },
-    @Ctx() { models }: IContext,
-  ): Promise<TownSchema> {
+  async town(@Root() root: IHero, @Ctx() { models }: IContext): Promise<TownSchema> {
     try {
-      return await models.Town.findById(townId);
+      return await models.Town.findById(root.townId);
     } catch (err) {
       throw err;
     }
+  }
+
+  @Subscription({ topics: NOTIFICATION })
+  notification(@Root() { message }: INotification): NotificationSchema {
+    return { message };
   }
 }

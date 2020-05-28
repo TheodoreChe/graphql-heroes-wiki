@@ -1,5 +1,5 @@
 import { Field, ObjectType, ID } from 'type-graphql';
-import { HeroSchema } from './HeroSchema';
+import { HeroSchema, IHero } from './Hero.schema';
 
 @ObjectType({ description: "The Town is Type" })
 export class TownSchema {
@@ -11,4 +11,10 @@ export class TownSchema {
 
   @Field((type) => HeroSchema)
   heroes: [HeroSchema];
+}
+
+export interface ITown {
+  id: string;
+  name: string;
+  heroes: IHero[];
 }
