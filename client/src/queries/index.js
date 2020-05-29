@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
-export const ADD_HERO_QUERY = gql`
-  mutation addHero($movementPoints: Int!, $name: String!, $townId: String!) {
-    addHero(movementPoints: $movementPoints, name: $name, townId: $townId) {
+export const ADD_HERO_QUERY = gql`  
+  mutation addHero($data: AddHeroInput!) {
+    addHero(data: $data) {
       name
     }
   }
@@ -31,7 +31,7 @@ export const GET_HERO_LIST_QUERY = gql`
 `;
 
 export const GET_HERO_QUERY = gql`
-  query Hero($id: ID!) {
+  query Hero($id: String!) {
     hero(id: $id) {
       name
       town {
@@ -42,7 +42,7 @@ export const GET_HERO_QUERY = gql`
 `;
 
 export const HERO_ID = gql`
-    query heroId {
-        heroId @client
-    }
+  query heroId {
+    heroId @client
+  }
 `;

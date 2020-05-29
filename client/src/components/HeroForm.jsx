@@ -18,9 +18,11 @@ export const HeroForm = () => {
     try {
       await addHero({
         variables: {
-          movementPoints: Number(movementPoints),
-          name,
-          townId,
+          data: {
+            movementPoints: Number(movementPoints),
+            name,
+            townId,
+          }
         },
         refetchQueries: [
           {

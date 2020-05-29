@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.8",
     "apollo-cache-inmemory": "^1.6.6",
+    "graphql": "^15.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
