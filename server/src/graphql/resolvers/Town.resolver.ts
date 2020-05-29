@@ -40,7 +40,6 @@ export class TownResolver {
     @Ctx() { models }: IContext,
   ): Promise<TownSchema> {
     try {
-      console.log(root);
       return await models.Hero.find({ townId: root.id });
     } catch (err) {
       throw err;

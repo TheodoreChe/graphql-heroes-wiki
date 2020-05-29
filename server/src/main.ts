@@ -11,6 +11,7 @@ async function bootstrap() {
     // Build the TypeGraphQL schema
     const schema = await buildSchema({
       resolvers: [HeroResolver, TownResolver],
+      emitSchemaFile: true,
     });
 
     // Connect to DataBase

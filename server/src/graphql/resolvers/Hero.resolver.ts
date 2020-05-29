@@ -44,7 +44,7 @@ export class HeroResolver {
   ): Promise<HeroSchema> {
     try {
       const hero = new models.Hero(newHeroData);
-      await pubSub.publish(NOTIFICATION, { message: newHeroData.name });
+      // await pubSub.publish(NOTIFICATION, { message: newHeroData.name });
       return await hero.save();
     } catch (err) {
       throw err;
