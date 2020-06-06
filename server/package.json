@@ -8,7 +8,7 @@
   },
   "author": "TheodoreChe",
   "dependencies": {
-    "apollo-server": "^2.13.1",
+    "apollo-server": "^2.14.2",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
     "find-config": "^1.0.0",
